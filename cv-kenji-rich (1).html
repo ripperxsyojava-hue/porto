@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kenji Rich — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0f12;
+      --paper: #f7f6f2;
+      --accent: #2d6cdf;
+      --accent-light: #e8effe;
+      --accent-glow: rgba(45, 108, 223, 0.12);
+      --muted: #6b6b78;
+      --line: #e2e1dd;
+      --card: #ffffff;
+      --tag-bg: #eef2fd;
+      --tag-text: #2d6cdf;
+      --success: #16a34a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      height: 56px;
+      background: rgba(247, 246, 242, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex; gap: 1.8rem; list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 80px 2rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+      gap: 3rem;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #1f55c7; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,108,223,0.35); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--line);
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    .hero-card {
+      flex: 0 0 320px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      padding: 2rem;
+      box-shadow: 0 8px 40px rgba(15,15,18,0.07);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+
+    .avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #6c8fe8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .card-role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .contact-icon {
+      width: 28px; height: 28px;
+      background: var(--accent-light);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #f0fdf4;
+      color: var(--success);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      color: var(--ink);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: all 0.25s;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .skill-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-card-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.28rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-timeline {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+
+    .edu-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .edu-item {
+      display: flex; gap: 2rem;
+      padding: 0 0 2.5rem 0;
+      position: relative;
+    }
+
+    .edu-dot {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 0.75rem;
+      z-index: 1;
+    }
+
+    .edu-content {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.4rem 1.6rem;
+      transition: all 0.2s;
+    }
+
+    .edu-content:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(45,108,223,0.1);
+    }
+
+    .edu-school {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-detail {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-period {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    .edu-grade {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      margin-left: 0.5rem;
+      background: #f0fdf4;
+      color: var(--success);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: all 0.25s;
+    }
+
+    .exp-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 30px rgba(45,108,223,0.12);
+    }
+
+    .exp-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1rem;
+    }
+
+    .exp-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-type {
+      display: inline-flex;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .exp-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
+      padding: 0.4rem 0.8rem;
+      border: 1.5px solid var(--accent);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .exp-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .exp-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.45rem;
+    }
+
+    .exp-list li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.88rem;
+      color: #3a3a45;
+    }
+
+    .exp-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── ABOUT / PROFILE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: #3a3a45;
+      line-height: 1.8;
+    }
+
+    .soft-skills {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+
+    .soft-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-size: 0.87rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .soft-item:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .soft-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 5rem 2rem;
+    }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-heading em {
+      color: #6c8fe8;
+    }
+
+    .contact-sub {
+      color: #9a9aa8;
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-links {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+
+    .contact-link-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--paper);
+      font-size: 0.88rem;
+      transition: all 0.2s;
+    }
+
+    .contact-link-item:hover {
+      background: rgba(108,143,232,0.2);
+      border-color: #6c8fe8;
+    }
+
+    .contact-icon-box {
+      width: 36px; height: 36px;
+      background: rgba(108,143,232,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* ── COPY TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      z-index: 999;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--line); margin: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; padding-top: 90px; gap: 2rem; }
+      .hero-card { flex: none; width: 100%; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      h1 { font-size: 2.4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+
+    /* ── HERO PHOTO ── */
+    .hero-photo-side {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    #heroPhoto {
+      width: 200px; height: 240px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 32px rgba(45,108,223,0.22);
+      display: block;
+    }
+
+    .hero-photo-fallback {
+      width: 200px; height: 240px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), #6c8fe8);
+      display: none;
+      align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: #fff;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 32px rgba(45,108,223,0.22);
+    }
+
+    @media (max-width: 768px) {
+      .hero-photo-side { display: flex; justify-content: center; }
+      #heroPhoto, .hero-photo-fallback { width: 140px; height: 170px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <span class="nav-logo">Kenji Rich</span>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#education">Pendidikan</a></li>
+    <li><a href="#experience">Pengalaman</a></li>
+    <li><a href="#contact" class="nav-cta">Hubungi</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo-side">
+    <img id="heroPhoto" src="foto-kenji.jpg" alt="Foto Kenji" onerror="this.style.display='none';document.getElementById('photoFallback').style.display='flex';" />
+    <div class="hero-photo-fallback" id="photoFallback">KR</div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Web Designer &amp; Developer</div>
+    <h1>Halo, saya<br /><span>Kenji Rich</span></h1>
+    <p class="hero-bio">
+      Siswa kelas 11 jurusan Pengembangan Perangkat Lunak dan Gim yang antusias dalam merancang tampilan website yang menarik, terstruktur, dan fungsional.
+    </p>
+    <div class="hero-actions">
+
+
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="avatar">KR</div>
+    <div>
+      <div class="card-name">Kenji Rich</div>
+      <div class="card-role">Kelas 10 PPLG 1</div>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      Terbuka untuk Magang
+    </div>
+    <hr class="divider" style="margin: 0.2rem 0;" />
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      Kosambi, Jakarta Barat, 11750
+    </div>
+    <div class="contact-item" style="cursor:pointer;" onclick="copyText('richkenji9@gmail.com')">
+      <div class="contact-icon">✉</div>
+      richkenji9@gmail.com
+    </div>
+    <div class="contact-item" style="cursor:pointer;" onclick="copyText('+62 877 2500 0537')">
+      <div class="contact-icon">📞</div>
+      +62 877 2500 0537
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🎓</div>
+      SMK Cinta Kasih Tzu Chi
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROFIL -->
+<section class="section fade-up" id="about">
+  <div class="section-label">Tentang Saya</div>
+  <h2 class="section-title">Profil Singkat</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Saya adalah siswa kelas 11 dari <strong>SMK Cinta Kasih Tzu Chi</strong> jurusan Pengembangan Perangkat Lunak dan Gim. Minat utama saya terletak pada <strong>desain website</strong> — mulai dari merancang struktur tata letak, membuat perencanaan visual, hingga menyusun alur kerja pengembangan website.
+      </p>
+      <br />
+      <p>
+        Saya memiliki pengalaman nyata dalam membuat website yang sudah digunakan klien, dan terus belajar agar bisa berkontribusi lebih besar dalam lingkungan kerja profesional. Saat ini saya <strong>aktif mencari kesempatan magang</strong> untuk mengembangkan skill dan mempersiapkan diri menghadapi dunia industri.
+      </p>
+    </div>
+    <div class="soft-skills">
+      <div class="soft-item"><div class="soft-icon">💡</div>Berpikir Kritis</div>
+      <div class="soft-item"><div class="soft-icon">🎨</div>Kreatif dalam Mengolah Ide</div>
+      <div class="soft-item"><div class="soft-icon">⚡</div>Cepat Beradaptasi</div>
+      <div class="soft-item"><div class="soft-icon">🗂</div>Terstruktur & Terencana</div>
+      <div class="soft-item"><div class="soft-icon">🤝</div>Komunikatif & Terbuka</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section class="section fade-up" id="skills">
+  <div class="section-label">Keahlian</div>
+  <h2 class="section-title">Yang Saya Kuasai</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-card-icon">🎨</div>
+      <div class="skill-card-title">Desain Website</div>
+      <div class="skill-tags">
+        <span class="tag">Tata Letak (Layout)</span>
+        <span class="tag">Desain Warna</span>
+        <span class="tag">UI Structure</span>
+        <span class="tag">Flowchart Website</span>
+        <span class="tag">Wireframe</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <div class="skill-card-title">Teknis & Coding</div>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Visual Studio Code</span>
+        <span class="tag">XAMPP</span>
+        <span class="tag">MAMP</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon">🖥</div>
+      <div class="skill-card-title">Perangkat Lunak</div>
+      <div class="skill-tags">
+        <span class="tag">Windows 10</span>
+        <span class="tag">Windows 11</span>
+        <span class="tag">Netlify Deploy</span>
+        <span class="tag">Web Planning</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-card-icon">🧠</div>
+      <div class="skill-card-title">Non-Teknis</div>
+      <div class="skill-tags">
+        <span class="tag">Perencanaan Proyek</span>
+        <span class="tag">Alur Kerja</span>
+        <span class="tag">Analisis Masalah</span>
+        <span class="tag">Manajemen Waktu</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EDUCATION -->
+<section class="section fade-up" id="education">
+  <div class="section-label">Pendidikan</div>
+  <h2 class="section-title">Riwayat Pendidikan</h2>
+  <div class="edu-timeline">
+
+    <div class="edu-item">
+      <div class="edu-dot">🎓</div>
+      <div class="edu-content">
+        <div class="edu-school">SMK Cinta Kasih Tzu Chi</div>
+        <div class="edu-detail">Jurusan: Rekayasa Perangkat Lunak (RPL) / Pengembangan Perangkat Lunak dan Gim</div>
+        <div>
+          <span class="edu-period">📅 Juli 2025 – Juli 2026</span>
+          <span class="edu-grade">⭐ Nilai Semester 1: 85</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-dot">📚</div>
+      <div class="edu-content">
+        <div class="edu-school">SMP Santo Leo 2</div>
+        <div class="edu-detail">Sekolah Menengah Pertama</div>
+        <div>
+          <span class="edu-period">📅 Juli 2022 – 2025</span>
+          <span class="edu-grade">⭐ Rata-rata: 85 | Ujian: 88</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<section class="section fade-up" id="experience">
+  <div class="section-label">Pengalaman</div>
+  <h2 class="section-title">Proyek & Pengalaman</h2>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Website Promosi Les (Freelance)</div>
+        <div class="exp-type">🔧 Proyek Berbayar</div>
+      </div>
+    </div>
+    <ul class="exp-list">
+      <li>Menerima dan mengerjakan proyek berbayar untuk membuat website promosi sebuah les privat.</li>
+      <li>Menampilkan informasi lengkap tentang guru les dan paket-paket yang tersedia.</li>
+      <li>Merancang layout yang menarik, mudah dibaca, dan nyaman digunakan pengunjung.</li>
+      <li>Melakukan deploy website secara online menggunakan Netlify.</li>
+    </ul>
+    <a href="http://melodic-froyo-fded6c.netlify.app" target="_blank" class="exp-link">
+      🌐 Lihat Website
+    </a>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-heading">Mari kita<br /><em>berkolaborasi!</em></h2>
+      <p class="contact-sub">
+        Saya terbuka untuk diskusi magang, proyek website, atau sekadar berbincang tentang dunia web design. Jangan ragu untuk menghubungi saya.
+      </p>
+      <a href="mailto:richkenji9@gmail.com" class="btn btn-primary">✉ Kirim Email</a>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link-item" href="mailto:richkenji9@gmail.com">
+        <div class="contact-icon-box">✉</div>
+        richkenji9@gmail.com
+      </a>
+      <div class="contact-link-item" style="cursor:pointer;" onclick="copyText('+62 877 2500 0537')">
+        <div class="contact-icon-box">📞</div>
+        +62 877 2500 0537 <small style="margin-left:auto;color:#6b6b78;font-size:0.7rem;">klik salin</small>
+      </div>
+      <div class="contact-link-item">
+        <div class="contact-icon-box">📍</div>
+        Kosambi, Jakarta Barat, 11750
+      </div>
+      <a class="contact-link-item" href="http://melodic-froyo-fded6c.netlify.app" target="_blank">
+        <div class="contact-icon-box">🌐</div>
+        Portofolio Website
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Kenji Rich · Dibuat dengan ❤ sebagai portofolio pribadi</p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Disalin ke clipboard!</div>
+
+<script>
+  // Copy to clipboard
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    });
+  }
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Navbar active link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+
+</script>
+</body>
+</html>
